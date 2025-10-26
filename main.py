@@ -1,75 +1,103 @@
+# import streamlit as st
+# from sidebar import sidebar
+# st.set_page_config(page_title="Amazon Bestseller Books App", layout="wide")
+
+# st.markdown("""
+#     <style>
+#         /* Hide Streamlit's default multi-page menu */
+#         [data-testid="stSidebarNav"] {
+#             display: none;
+#         }
+#     </style>
+# """, unsafe_allow_html=True)
+# plot_theme  =sidebar()
+# st.title("📚 Amazon Bestseller Dashboard")
+# st.markdown("""
+# Welcome to the *multi-page interactive dashboard* for Amazon bestseller books.
+
+# Use the sidebar to navigate:
+# - Top Authors
+# - Genre Ratings
+# - Dataset Exploration
+# - Rating Prediction
+# """)
 import streamlit as st
-import pandas as pd
+from streamlit_lottie import st_lottie
+import requests
+from sidebar import sidebar
 
-# Load dataset
-df = pd.read_csv("bestseller.csv")
+# ---- Page Setup ----
+st.set_page_config(page_title="Amazon Bestseller App", page_icon="📘", layout="wide")
+st.markdown("""
+    <style>
+        /* Hide Streamlit's default multi-page menu */
+        [data-testid="stSidebarNav"] {
+            display: none;
+        }
+    </style>
+""", unsafe_allow_html=True)
+# ---- Theme Setup ----
+plot_theme = sidebar()
 
-# Clean data
-df.drop_duplicates(inplace=True)
-df.rename(columns={"Name": "Title", "Year": "Publication Year", "User Rating": "Rating"}, inplace=True)
-df["Price"] = df["Price"].astype(float)
 
-# Analysis
-author_counts = df['Author'].value_counts()
-avg_rating_by_genre = df.groupby("Genre")["Rating"].mean()
+# ---- Load Lottie Animation ----
+def load_lottie_url(url):
+    r = requests.get(url)
+    if r.status_code != 200:
+        return None
+    return r.json()
 
-# --- Streamlit UI ---
-st.set_page_config(page_title="Bestseller Books Dashboard", layout="wide")
+lottie_book = load_lottie_url("https://assets7.lottiefiles.com/packages/lf20_2glqweqs.json")
 
-# Title
-st.title("📚 Bestseller Books Dashboard")
-st.markdown("Welcome to the interactive dashboard for **Amazon Bestseller Books** data. 🎉")
+# ---- Header Banner ----
+st.image("assets/banner_books.jpg",use_column_width=True)
 
-# Quick stats
-col1, col2, col3 = st.columns(3)
-col1.metric("Total Books", df.shape[0])
-col2.metric("Unique Authors", df['Author'].nunique())
-col3.metric("Genres", df['Genre'].nunique())
-
-st.markdown("---")
-
-# Top Authors Section
-st.subheader("👨‍💻 Top 10 Selling Authors")
-st.bar_chart(author_counts.head(10))
-
-# Download button for top authors
-st.download_button(
-    label="📥 Download Top Authors CSV",
-    data=author_counts.head(10).to_csv().encode("utf-8"),
-    file_name="top_authors.csv",
-    mime="text/csv"
+# ---- Title Section ----
+st.markdown(
+    """
+    <h1 style="text-align:center; color:#1E90FF;">📚 Amazon Bestseller Dashboard</h1>
+    <p style="text-align:center; font-size:18px;">
+        Explore book insights, analyze trends, and discover what makes a book a bestseller.
+    </p>
+    """,
+    unsafe_allow_html=True
 )
 
-st.markdown("---")
+st.divider()
 
-# Average Ratings by Genre
-st.subheader("⭐ Average Rating by Genre")
-st.dataframe(avg_rating_by_genre)
+# ---- Hero Section ----
+col1, col2 = st.columns([2, 1])
 
-st.bar_chart(avg_rating_by_genre)
+with col1:
+    st.markdown(
+        """
+        ### 🚀 Welcome to the Interactive Book Dashboard
+        Dive into data of Amazon’s top-selling books to uncover:
+        - 🧠 Patterns behind top-rated authors  
+        - ⭐ Genre performance and trends  
+        - 📈 Data-driven bestseller predictions  
 
-# Download button for avg rating
-st.download_button(
-    label="📥 Download Avg Rating by Genre CSV",
-    data=avg_rating_by_genre.to_csv().encode("utf-8"),
-    file_name="avg_rating_by_genre.csv",
-    mime="text/csv"
+        Use the sidebar to navigate across pages:
+        - *🏠 Home*
+        - *👑 Top Authors*
+        - *⭐ Genre Ratings*
+        - *🔍 Explore Dataset*
+        - *🤖 Rating Predictor*
+        """
+    )
+
+with col2:
+    st_lottie(lottie_book, speed=1, height=300, key="reading")
+
+st.divider()
+
+# ---- Footer Section ----
+st.markdown(
+    """
+    <div style="text-align:center; margin-top:30px; font-size:15px;">
+        Made with 💙 by <b>Palakdeep Kaur</b> <br>
+        <i>Amazon Bestseller Books Project</i>
+    </div>
+    """,
+    unsafe_allow_html=True
 )
-
-st.markdown("---")
-
-# Explore dataset with filters
-st.subheader("🔎 Explore the Dataset")
-
-# Sidebar filters
-st.sidebar.header("Filters")
-selected_genre = st.sidebar.multiselect("Select Genre:", options=df["Genre"].unique(), default=df["Genre"].unique())
-selected_year = st.sidebar.slider("Select Publication Year:", int(df["Publication Year"].min()), int(df["Publication Year"].max()), (int(df["Publication Year"].min()), int(df["Publication Year"].max())))
-
-# Apply filters
-filtered_df = df[(df["Genre"].isin(selected_genre)) & 
-                 (df["Publication Year"].between(selected_year[0], selected_year[1]))]
-
-st.dataframe(filtered_df)
-
-st.markdown("✅ Use the sidebar to filter the data and explore trends!")
