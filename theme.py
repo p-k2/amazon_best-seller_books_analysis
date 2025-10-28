@@ -11,7 +11,7 @@ def apply_theme():
     else:
         bg_color = "#353839"
         text_color = "#fffafa"
-        heading_color = "#8AB4F8"
+        heading_color = "#91A2BB"
         plot_theme = "plotly_dark"
 
     st.markdown(f"""
@@ -21,7 +21,7 @@ def apply_theme():
             color: {text_color};
             font-family: 'Segoe UI', sans-serif;
         }}
-        .stMarkdown h1,.stMarkdown  h2,.stMarkdown  h3 {{
+        .stMarkdown h1,.stMarkdown  h2,.stMarkdown  h3, .stTitle, .stSubheader{{
             color: {heading_color};
         }}
         </style>
