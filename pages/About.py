@@ -24,6 +24,7 @@ def load_lottie_url(url: str):
 lottie_book = load_lottie_url("https://assets8.lottiefiles.com/packages/lf20_m9zragkd.json")
 
 # --- Page Title ---
+
 st.title("📖 About the Project")
 st.markdown("---")
 

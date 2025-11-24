@@ -65,5 +65,6 @@ if st.button("Predict Rating"):
 
     predicted_rating = model.predict(input_data)[0]
 
+
     st.success(f"📈 Predicted Rating: {predicted_rating:.2f} ⭐")
 

@@ -1,26 +1,4 @@
-# import streamlit as st
-# from sidebar import sidebar
-# st.set_page_config(page_title="Amazon Bestseller Books App", layout="wide")
 
-# st.markdown("""
-#     <style>
-#         /* Hide Streamlit's default multi-page menu */
-#         [data-testid="stSidebarNav"] {
-#             display: none;
-#         }
-#     </style>
-# """, unsafe_allow_html=True)
-# plot_theme  =sidebar()
-# st.title("📚 Amazon Bestseller Dashboard")
-# st.markdown("""
-# Welcome to the *multi-page interactive dashboard* for Amazon bestseller books.
-
-# Use the sidebar to navigate:
-# - Top Authors
-# - Genre Ratings
-# - Dataset Exploration
-# - Rating Prediction
-# """)
 import streamlit as st
 from streamlit_lottie import st_lottie
 import requests
