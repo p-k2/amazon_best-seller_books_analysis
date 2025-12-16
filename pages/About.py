@@ -3,7 +3,7 @@ from streamlit_lottie import st_lottie
 import requests
 from sidebar import sidebar
 
-plot_theme = sidebar()
+styles = sidebar()
 st.markdown("""
     <style>
         /* Hide Streamlit's default multi-page menu */

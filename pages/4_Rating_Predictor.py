@@ -12,7 +12,7 @@ st.markdown("""
         }
     </style>
 """, unsafe_allow_html=True)
-plot_theme = sidebar()
+plot_theme  = sidebar()
 
 st.title("🤖 Predict Book Rating")
 

@@ -36,8 +36,8 @@ from sidebar import sidebar
 from theme import apply_theme
 
 st.set_page_config(page_title="Rating Predictor", layout="wide")
-plot_theme = sidebar()
-apply_theme(plot_theme)
+plot_theme  = sidebar()
+apply_theme(plot_theme )
 
 st.markdown(f"""
     <h1 style='color: {"#fffafa"}; font-size: 2.5em;'>🤖 Predict Book Rating</h1>

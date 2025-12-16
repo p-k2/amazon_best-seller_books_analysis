@@ -13,7 +13,7 @@ st.markdown("""
         }
     </style>
 """, unsafe_allow_html=True)
-plot_theme = sidebar()
+plot_theme  = sidebar()
 # Load dataset
 df = pd.read_csv("data/bestseller.csv")
 df.drop_duplicates(inplace=True)
@@ -24,7 +24,7 @@ avg_rating_by_genre = df.groupby("Genre")["Rating"].mean()
 
 # Display chart
 st.title("⭐ Average Rating by Genre")
-st.plotly_chart(avg_rating_by_genre_chart(df, avg_rating_by_genre, plot_theme), use_container_width=True)
+st.plotly_chart(avg_rating_by_genre_chart(df, avg_rating_by_genre, plot_theme ), use_container_width=True)
 
 # Download button
 st.download_button(

@@ -15,7 +15,7 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 # ---- Theme Setup ----
-plot_theme = sidebar()
+styles= sidebar()
 
 
 # ---- Load Lottie Animation ----
@@ -49,7 +49,7 @@ col1, col2 = st.columns([2, 1])
 with col1:
     st.markdown(
         """
-        ### 🚀 Welcome to the Interactive Book Dashboard
+  lot_theme       ### 🚀 Welcome to the Interactive Book Dashboard
         Dive into data of Amazon’s top-selling books to uncover:
         - 🧠 Patterns behind top-rated authors  
         - ⭐ Genre performance and trends  
