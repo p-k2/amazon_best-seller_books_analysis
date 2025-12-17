@@ -2,8 +2,10 @@ import streamlit as st
 
 from theme import apply_theme
 
+
 def sidebar():
     st.sidebar.markdown("## 🧭 Navigation")
+
     st.sidebar.page_link("main.py", label="Main")
     st.sidebar.page_link("pages/Top_Authors.py", label="👨‍💻 Top Authors")
     st.sidebar.page_link("pages/2_Genre_Ratings.py", label="⭐ Genre Ratings")
@@ -13,11 +15,18 @@ def sidebar():
 
     st.sidebar.markdown("---")
 
-    plot_theme = apply_theme()
-
+    # 🎨 THEME TOGGLE (VISIBLE & CLEAR)
+    theme = st.sidebar.radio(
+        "🎨 App Theme",
+        ["Light", "Dark"],
+        index=0
+    )
 
     st.sidebar.markdown("---")
-        # --- FEEDBACK SECTION ---
+
+    plot_theme = apply_theme(theme)
+
+    # --- FEEDBACK SECTION ---
     st.sidebar.markdown("### 💬 Feedback")
     st.sidebar.info("Found a bug or suggestion?")
     st.sidebar.link_button("📧 Contact Developer", "mailto:your_email@example.com")

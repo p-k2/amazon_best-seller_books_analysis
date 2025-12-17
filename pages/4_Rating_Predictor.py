@@ -1,6 +1,5 @@
 import streamlit as st
 import pandas as pd
-import pickle
 from sidebar import sidebar 
 
 st.set_page_config(page_title="Rating Predictor", layout="wide")
@@ -13,7 +12,6 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 plot_theme  = sidebar()
-
 st.title("🤖 Predict Book Rating")
 
 # Load dataset for reference
