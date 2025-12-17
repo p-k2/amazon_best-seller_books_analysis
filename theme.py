@@ -3,44 +3,6 @@
 import streamlit as st
 
 
-
-# def apply_theme():
-#     theme = st.sidebar.radio("🎨 Choose Theme", ["Light", "Dark"], horizontal=True)
-
-#     bg_color = "#f9f9fc" if theme == "Light" else "#0E1117"
-#     text_color = "#222222" if theme == "Light" else "#FAFAFA"
-#     heading_color = "#FFFFFF" if theme == "Dark" else "#4A47A3"
-#     input_bg = "#ffffff" if theme == "Light" else "#262730"
-#     input_border = "#cccccc" if theme == "Light" else "#3E3E3E"
-
-#     st.markdown(
-#         f"""
-#         <style>
-#         /* 🌙 App background */
-#         .stApp {{
-#             background-color: {bg_color};
-#             color: {text_color};
-#         }}
-
-#         /* 🔥 FORCE st.title / st.header / st.subheader */
-#         .stApp h1,
-#         .stApp h2,
-#         .stApp h3 {{
-#             color: {heading_color} !important;
-#         }}
-
-#         /* Inputs */
-#         .stTextInput input,
-#         .stTextArea textarea {{
-#             background-color: {input_bg};
-#             color: {text_color};
-#             border: 1px solid {input_border};
-#         }}
-
-#         </style>
-#         """,
-#         unsafe_allow_html=True
-#     )
 def apply_theme(theme):
     if theme == "Light":
         bg_color = "#f9f9fc"
@@ -85,9 +47,6 @@ def apply_theme(theme):
     """,
     unsafe_allow_html=True
 )
-
-   
-    
 
     return plot_theme
 
